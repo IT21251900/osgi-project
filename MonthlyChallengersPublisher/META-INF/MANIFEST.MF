@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: challangers-publisher
-Bundle-SymbolicName: ChallangersPublisher
+Bundle-Name: challengers-publisher
+Bundle-SymbolicName: ChallengersPublisher
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: challanges.publisher.AdventurePackagesActivator
+Bundle-Activator: challenges.publisher.MonthlyChallengesActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-Automatic-Module-Name: challanges.publisher
+Automatic-Module-Name: challenges.publisher
 Import-Package: org.osgi.framework;version="1.10.0"
 Bundle-ActivationPolicy: lazy
-Export-Package: challanges.publisher
+Export-Package: challenges.publisher
