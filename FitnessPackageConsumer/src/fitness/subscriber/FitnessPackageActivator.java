@@ -58,14 +58,14 @@ public class FitnessPackageActivator implements BundleActivator {
 
                 while (type != 0) {
                     
-                    // Get user input for extra items selection
-                    System.out.print("\nDo you want any extra items for the fitness program? (Y/N): ");
+                    // Get user input for extra activities selection
+                    System.out.print("\nDo you want any extra activities for the fitness program? (Y/N): ");
                     char isExtra = scan.next().charAt(0);
 
-                    // If user wants extra items
+                    // If user wants extra activities
                     if (isExtra == 'Y' || isExtra == 'y') {
                         
-                        // Display extra items and their prices
+                        // Display extra activities and their prices
                         System.out.println("\n------------------------------ Extra Stuff ------------------------------");
                         System.out.println("1. Personal Training Session \t\tLKR 2500.00");
                         System.out.println("2. Fitness Assessment            \t\tLKR 1500.00");
@@ -74,7 +74,7 @@ public class FitnessPackageActivator implements BundleActivator {
                         System.out.println("\n(Enter -1 to exit)");
 
                         do {
-                            System.out.print("Enter the number of the extra item you want to select: ");
+                            System.out.print("Enter the number of the extra activities you want to select: ");
                             exType = scan.nextInt();
 
                             // Calculate and add extra item price to total price
