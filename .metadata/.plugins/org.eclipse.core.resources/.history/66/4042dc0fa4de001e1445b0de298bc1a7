@@ -1,0 +1,23 @@
+package bootcamppackagespublisher;
+
+public class BootCampPackageImp implements BootCampPackagesInterface {
+
+	@Override
+	public void displayBootCampByCategory(int num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getBootCampPrice(int category, int place) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getBootCampCategory(int category, int place) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

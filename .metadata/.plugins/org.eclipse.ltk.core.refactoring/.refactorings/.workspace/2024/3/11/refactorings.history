@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 11 resources" deleteContents="true" description="Delete 11 resources" element1="/FitnessPackageConsumer" element10="/HillClimbingPackagesPublisher" element11="/MonthlyChallengersPublisher" element2="/osgi-project" element3="/MontlyChallengersConsumer" element4="/AdventurePackagesPublisher" element5="/HillClimbingPackagesConsumer" element6="/SafariPackagesPublisher" element7="/SafariPackagesConsumer" element8="/FitnessPackagesProducer" element9="/AdventurePackagesConsumer" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="11" stamp="1710060112533"/>
+</session>

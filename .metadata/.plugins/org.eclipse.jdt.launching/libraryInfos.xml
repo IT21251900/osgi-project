@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <libraryInfos>
-    <libraryInfo home="C:\Program Files\Java\jdk-17" version="17.0.6"/>
+    <libraryInfo home="C:\Users\Malith\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143" version="17.0.10"/>
+    <libraryInfo home="C:\Program Files\Microsoft\jdk-11.0.18.10-hotspot" version="11.0.18"/>
+    <libraryInfo home="C:\Users\Malith\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre" version="17.0.10"/>
 </libraryInfos>

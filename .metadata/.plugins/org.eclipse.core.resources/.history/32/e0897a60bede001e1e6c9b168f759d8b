@@ -1,0 +1,154 @@
+package bootcamppackageconsumer;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+
+import bootcamppackagespublisher.BootCampPackagesInterface;
+
+
+public class BootCampActivator implements BundleActivator {
+
+	// Declare service reference variable
+	ServiceReference bootCampServiceReference;
+
+	// Declare scanner object for user input
+	Scanner scan = new Scanner(System.in);
+
+	// Start method for bundle activation
+	public void start(BundleContext bundleContext) throws Exception {
+
+		// Declare and initialize variables
+		int publisherType, selected, type, mainType;
+		double totalPrice = 0, discount = 0, admitionAmount = 0;
+		float discountPercentage = (float) 0.05;
+		ArrayList<String> selectedPlaces = new ArrayList<String>();
+
+		// Get service reference for Adventure Packages interface
+		bootCampServiceReference = bundleContext.getServiceReference(BootCampPackagesInterface.class.getName());
+		BootCampPackagesInterface bootCampPublisher = (BootCampPackagesInterface) bundleContext.getService(bootCampServiceReference);
+
+		System.out.println("\n======================= Welcome to Bootcamp Packages Consumer! =======================\n");
+		System.out.println("Press 1 to continue with bootcamp packages.");
+		System.out.println("Press 0 to exit.");
+
+		try {
+			System.out.print("Enter your choice: ");
+			publisherType = scan.nextInt();
+			System.out.println("_____________________________________________________________________________\n");
+
+			if (publisherType == 1) {
+
+				System.out.println("\n------------------------- Categories Of Adventure ---------------------------");
+				System.out.println("1. Water Sports");
+				System.out.println("2. Target Sports");
+				System.out.println("3. Team Building Adventures");
+				System.out.println("4. Cycling\n");
+				System.out.println("****************************");
+				System.out.println();
+
+				System.out.println("(To exit and get the total, press 0.)");
+				System.out.print("Enter the category of adventure you want to select: ");
+				type = scan.nextInt();
+
+				while (type != 0) {
+					
+					// Get user input for extra items selection
+					System.out.print("\nDo you want any extra items for the adventure? (Y/N): ");
+					char isExtra = scan.next().charAt(0);
+
+					// If user wants extra items
+					if (isExtra == 'Y' || isExtra == 'y') {
+						
+						// Display extra items and their prices
+						System.out.println("\n------------------------------ Extra Stuff ------------------------------");
+						System.out.println("1. Bootcamp \t\tLKR 1000.00");
+						System.out.println("2. Retreats            \t\tLKR 2000.00");
+						System.out.println("****************************\n");
+						System.out.println("\n(Enter -1 to exit)");
+
+						System.out.print("Enter the number which type you prefer: ");
+						mainType = scan.nextInt();
+
+						// Calculate and add extra item price to total price
+						switch (mainType) {
+							case 1:
+								admitionAmount = 1000;
+								break;
+							case 2:
+								admitionAmount = 2000;
+								break;
+							default:
+								admitionAmount = 0;
+								System.out.println("Invalide Input Program will end ..");
+								return 0
+						}
+						
+						totalPrice += admitionAmount;
+
+						System.out.println("_____________________________________________________________________________\n");
+						if (mainType == 1) {
+							
+						} 
+						else if (mainType == 2)
+					}
+
+					System.out.println("\n------------------------------ Adventure Places ------------------------------\n");
+					// Display adventure packages under user's selected category
+//					bootCampPublisher.displayBootCampByCategory(exType);
+
+					System.out.println("\n(To quit the current category, enter -1.)");
+					System.out.print("Enter the adventure place you want to select: ");
+					selected = scan.nextInt();
+
+					// Loop through selected adventure places
+					while (selected != -1) {
+						// Calculate and add adventure place price to total price
+						totalPrice += bootCampPublisher.getBootCampPrice(type, selected);
+						selectedPlaces.add(bootCampPublisher.getBootCampCategory(type, selected));
+						
+						System.out.print("Enter the adventure place you want to select: ");
+						selected = scan.nextInt();
+					}
+
+					System.out.print("\nPress 0 to get the balance and buy hill climbing packages.\n");
+					System.out.print("Enter the category of adventure you want to purchase next: ");
+					type = scan.nextInt();
+				}
+				
+				discount = totalPrice * discountPercentage;
+				double finalPrice = totalPrice - discount;
+				
+				System.out.println("\n------------------------------ Summary Report ------------------------------");
+				System.out.println("Selected Places:");
+				for (String place : selectedPlaces) {
+				    System.out.println("- " + place);
+				}
+				System.out.printf("\n%-20s %s", "Total Price:", "LKR " + String.format("%.2f", totalPrice));
+				System.out.printf("\n%-20s %s", "Discount:", "LKR " + String.format("%.2f", discount));
+				System.out.printf("\n%-20s %s", "Final Price:", "LKR " + String.format("%.2f", finalPrice));
+				System.out.println("\n\n===========================================================================");
+				
+			} else if(publisherType == 0) {
+				// If user wants to exit, stop bundle activation
+				this.stop(bundleContext);
+			}	
+			
+		} catch (InputMismatchException e) {
+			System.out.println("Invalid input! Please enter an integer.");
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+	}
+
+	// Stop method for bundle deactivation
+	public void stop(BundleContext bundleContext) throws Exception {
+		System.out.println("Bootcamp Subscriber has stopped.");
+		bundleContext.ungetService(bootCampServiceReference);
+	}
+
+}
